@@ -9,10 +9,16 @@ namespace Mytips.Models.Base
 {
     public class RepoBase
     {
-        private static string _path = "C:\\MyTipDb";
+        //private static string _path = "C:\\MyTipDb";
+        //private static string _path = System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase + "\\Models\\DbFiles";
+        private static string _path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Replace("file:\\","") + "\\Models\\DbFiles";
         private static string _dbFilePath = _path + "\\MyTip.db";
         private static string _connectionString = $"Data Source=" + _dbFilePath;
-                
+        public RepoBase()
+        {
+            //string ff = System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase;
+            //_path = System.IO.Path.GetDirectoryName(ff);
+        }        
         public static string GetQueryFromFile(string fileName)
         {
             return System.IO.File.ReadAllText(_path + "\\" + fileName);
@@ -21,7 +27,7 @@ namespace Mytips.Models.Base
         /// <summary>
         /// Local DB 초기화 메서드
         /// </summary>
-        private static void InitLocalDB_SQLite()
+        private static void InitDbFile()
         {
             //string connStr = "Data Source=" + Environment.CurrentDirectory + "\\Local.db";
 
@@ -84,11 +90,11 @@ namespace Mytips.Models.Base
             if (System.IO.File.Exists(_dbFilePath))
             {
                 System.IO.File.Delete(_dbFilePath);
-                InitLocalDB_SQLite();
+                InitDbFile();
             }
             else
             {
-                InitLocalDB_SQLite();
+                InitDbFile();
             }
         }
 
@@ -96,7 +102,7 @@ namespace Mytips.Models.Base
         {
             if (!System.IO.File.Exists(_dbFilePath))
             {
-                InitLocalDB_SQLite();
+                InitDbFile();
             }
         }
     }

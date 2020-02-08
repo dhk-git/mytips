@@ -31,13 +31,17 @@ namespace Mytips.Controllers
 
         public IActionResult Test()
         {
-            TipRepo tipRepository = new TipRepo();
-            var data = tipRepository.SelectTipHeaderModels(new TipModelArgs());
-            string aa = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-            string bb = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(),
-                         "sql", "CreateTable.sql");
-            
-            return View(data);
+            //TipRepo tipRepository = new TipRepo();
+            //var data = tipRepository.SelectTipHeaderModels(new TipModelArgs());
+            var aa = System.Reflection.Assembly.GetExecutingAssembly().GetName();
+            string ff = System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase;
+            string pa = System.IO.Path.GetDirectoryName(ff);
+            //string bb = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(),
+            //             "sql", "CreateTable.sql");
+
+            Models.Base.RepoBase.InitLocalSqlite();
+
+            return View();
         }
         
 
