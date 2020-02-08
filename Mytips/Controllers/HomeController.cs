@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Mytips.Models;
+using Mytips.Models.TipModel;
 
 namespace Mytips.Controllers
 {
@@ -27,6 +28,20 @@ namespace Mytips.Controllers
         {
             return View();
         }
+
+        public IActionResult Test()
+        {
+            TipRepo tipRepository = new TipRepo();
+            var data = tipRepository.SelectTipHeaderModels(new TipModelArgs());
+            string aa = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+            string bb = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(),
+                         "sql", "CreateTable.sql");
+            
+            return View(data);
+        }
+        
+
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
