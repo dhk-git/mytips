@@ -17,16 +17,33 @@ namespace Mytips.Controllers
             return View(data);
         }
 
-        public IActionResult Insert()
+        public IActionResult CreateHeader()
         {
-
-            return View();
+            TipHeaderModel tipHeaderModel = new TipHeaderModel();
+            tipHeaderModel.CREATE_DTTM = DateTime.Now;
+            tipHeaderModel.UPDATE_DTTM = DateTime.Now;
+            return View(tipHeaderModel);
         }
 
-        public IActionResult Edit()
+        [HttpPost]
+        public IActionResult CreateHeader(TipHeaderModel tipHeaderModel)
         {
+            _tipRepo.InsertTipHeaderModel(tipHeaderModel);
+            return RedirectToAction("Index");
+        }
 
-            return View();
+        public IActionResult EditHeader(int tipID)
+        {
+            _tipModelArgs.Select_Tip_Id = tipID;
+            var data = _tipRepo.SelectTipHeaderModel(_tipModelArgs);
+            return View(data);
+        }
+
+        [HttpPost]
+        public IActionResult EditHeader(TipHeaderModel tipHeaderModel)
+        {
+            _tipRepo.UpdateTipHeaderModel(tipHeaderModel);
+            return RedirectToAction("Index");
         }
     }
 }

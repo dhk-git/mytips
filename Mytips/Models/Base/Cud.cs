@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Mytips.Models.TipModel
+namespace Mytips.Models.Base
 {
-    public class TipModelArgs
+    public enum Cud
     {
-        public int Select_Tip_Id { get; set; }
+        Insert,
+        Update,
+        Delete
     }
 }
