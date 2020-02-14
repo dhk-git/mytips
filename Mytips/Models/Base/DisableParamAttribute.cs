@@ -10,5 +10,6 @@ namespace Mytips.Models.Base
         public bool Insert { get; set; } = true;
         public bool Update { get; set; } = true;
         public bool Delete { get; set; } = true;
+        public bool Select { get; set; } = true;
     }
 }

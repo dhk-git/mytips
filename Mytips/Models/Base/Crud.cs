@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace Mytips.Models.Base
 {
-    public enum Cud
+    public enum Crud
     {
         Insert,
         Update,
-        Delete
+        Delete,
+        Select
     }
 }

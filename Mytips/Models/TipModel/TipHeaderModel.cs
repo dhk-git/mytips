@@ -13,21 +13,21 @@ namespace Mytips.Models.TipModel
         [DisableParam(Update = false)]
         [Display(Name ="ID")]
         public int TIP_ID { get; set; }
-        [Display(Name = "ParentID")]
+        [Display(Name = "상위ID")]
         public int PARENT_TIP_ID { get; set; }
-        [Display(Name = "TipName")]
+        [Display(Name = "Tip")]
         public string TIP_NAME { get; set; }
-        [Display(Name = "Remark")]
+        [Display(Name = "비고")]
         public string REMARK { get; set; }
-        [Display(Name = "SortNo")]
+        [Display(Name = "순서")]
         public decimal SORT_NO { get; set; }
-        [Display(Name = "DelFlag")]
+        [Display(Name = "삭제Flag")]
         public string DEL_FLAG { get; set; }
-        [Display(Name = "CreateDateTime")]
+        [Display(Name = "생성일시")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         [DisableParam]
         public DateTime CREATE_DTTM { get; set; }
-        [Display(Name = "UpdateDateTime")]
+        [Display(Name = "수정일시")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         [DisableParam]
         public DateTime UPDATE_DTTM { get; set; } 

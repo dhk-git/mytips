@@ -12,7 +12,7 @@
     <div class="col-md-4">
         <form asp-action="CreateHeader">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group" style="display:none">
                 <label asp-for="TIP_ID" class="control-label"></label>
                 <input asp-for="TIP_ID" class="form-control" />
                 <span asp-validation-for="TIP_ID" class="text-danger"></span>
@@ -37,7 +37,7 @@
                 <input asp-for="SORT_NO" class="form-control" />
                 <span asp-validation-for="SORT_NO" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display:none">
                 <label asp-for="DEL_FLAG" class="control-label"></label>
                 <input asp-for="DEL_FLAG" class="form-control" />
                 <span asp-validation-for="DEL_FLAG" class="text-danger"></span>

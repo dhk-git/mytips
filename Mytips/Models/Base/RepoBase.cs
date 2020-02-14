@@ -84,7 +84,7 @@ namespace Mytips.Models.Base
         }
 
 
-        protected void Execute(Cud cud, string query, object model, bool isSqlFile)
+        protected void Execute(Crud crud, string query, object model, bool isSqlFile)
         {
             string query2;
             if (isSqlFile == true)
@@ -97,12 +97,12 @@ namespace Mytips.Models.Base
             }
             using (SqliteConnection ctx = new SqliteConnection(_connectionString))
             {
-                ctx.Execute(query2, GetParametersDisableParam(model, cud));
+                ctx.Execute(query2, GetParametersDisableParam(model, crud));
             };
 
         }
 
-        protected static DynamicParameters GetParametersDisableParam(object model, Cud cud)
+        protected static DynamicParameters GetParametersDisableParam(object model, Crud crud)
         {
             bool exsits;
 
@@ -114,15 +114,15 @@ namespace Mytips.Models.Base
                 {
                     if (att is DisableParamAttribute)
                     {
-                        if (cud == Cud.Insert && ((DisableParamAttribute)att).Insert == true)
+                        if (crud == Crud.Insert && ((DisableParamAttribute)att).Insert == true)
                         {
                             exsits = true;
                         }
-                        if (cud == Cud.Update && ((DisableParamAttribute)att).Update == true)
+                        if (crud == Crud.Update && ((DisableParamAttribute)att).Update == true)
                         {
                             exsits = true;
                         }
-                        if (cud == Cud.Delete && ((DisableParamAttribute)att).Delete == true)
+                        if (crud == Crud.Delete && ((DisableParamAttribute)att).Delete == true)
                         {
                             exsits = true;
                         }

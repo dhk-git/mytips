@@ -40,7 +40,7 @@ UPDATE TIP_HEADER
     , UPDATE_DTTM   = datetime('now','localtime')
 WHERE TIP_ID = @TIP_ID
 ";
-            Execute(Cud.Update, qry, tipHeaderModel, false);
+            Execute(Crud.Update, qry, tipHeaderModel, false);
         }
         
         public void InsertTipHeaderModel(TipHeaderModel model)
@@ -65,7 +65,7 @@ INSERT INTO TIP_HEADER (
     , datetime('now','localtime')
 )
 ";
-            Execute(Cud.Insert, qry, model, false);
+            Execute(Crud.Insert, qry, model, false);
         }
     }
 }
