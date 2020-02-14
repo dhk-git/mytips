@@ -12,7 +12,18 @@ namespace Mytips.Models.TipModel
         {
             string qry;
             qry = @"
-SELECT * FROM TIP_HEADER
+WITH RECURSIVE
+	P( TIP_NAME, TIP_ID, LEVEL, REMARK, SORT_NO, CREATE_DTTM, UPDATE_DTTM) AS (
+		SELECT TIP_NAME, TIP_ID, 0, REMARK, SORT_NO, CREATE_DTTM, UPDATE_DTTM
+		FROM TIP_HEADER WHERE PARENT_TIP_ID = 0
+	UNION ALL
+		SELECT C.TIP_NAME, C.TIP_ID, LEVEL + 1 AS LEVEL 
+			, C.REMARK, C.SORT_NO, C.CREATE_DTTM, C.UPDATE_DTTM
+		FROM TIP_HEADER AS C
+		JOIN P ON C.PARENT_TIP_ID = P.TIP_ID
+	ORDER BY LEVEL DESC, SORT_NO
+)
+SELECT substr('..........',TIP_NAME ,LEVEL * 3) || TIP_NAME AS TIP_NAME_LEVEL, * FROM P
 ";
             return QueryList<TipHeaderModel>(qry, args , false);
         }

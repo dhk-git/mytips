@@ -15,6 +15,12 @@ namespace Mytips.Models.TipModel
         public int TIP_ID { get; set; }
         [Display(Name = "상위ID")]
         public int PARENT_TIP_ID { get; set; }
+        [Display(Name = "Level")]
+        [DisableParam]
+        public int LEVEL { get; set; }
+        [Display(Name = "TipLevel")]
+        [DisableParam]
+        public string TIP_NAME_LEVEL { get; set; }
         [Display(Name = "Tip")]
         public string TIP_NAME { get; set; }
         [Display(Name = "비고")]

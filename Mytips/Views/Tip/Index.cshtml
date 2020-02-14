@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="CreateHeader">Create New</a>
+    <a asp-action="CreateHeader" asp-route-parentTipId="0">Create Root</a>
 </p>
 <table class="table table-striped table-sm">
     <thead>
@@ -15,14 +15,17 @@
             <th>
                 @Html.DisplayNameFor(model => model.TIP_ID)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PARENT_TIP_ID)
-            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.PARENT_TIP_ID)
+        </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.TIP_NAME)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.REMARK)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SORT_NO)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CREATE_DTTM)
@@ -39,14 +42,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TIP_ID)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PARENT_TIP_ID)
-            </td>
-            <td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.PARENT_TIP_ID)
+        </td>*@
+            <td  style="padding-left:@(item.LEVEL * 30)px">
                 @Html.DisplayFor(modelItem => item.TIP_NAME)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.REMARK)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SORT_NO)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CREATE_DTTM)
@@ -56,8 +62,9 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "EditHeader", new { tipId = item.TIP_ID }) |
-                @Html.ActionLink("Details", "DetailsHeader", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "DeleteHeader", new { /* id=item.PrimaryKey */ })
+                @*@Html.ActionLink("Detail", "DetailsHeader", new { tipId = item.TIP_ID }) |*@
+                @Html.ActionLink("Delete", "DeleteHeader", new { tipId = item.TIP_ID }) |
+                @Html.ActionLink("Create Child", "CreateHeader", new { parentTipID = item.TIP_ID })
             </td>
         </tr>
 }

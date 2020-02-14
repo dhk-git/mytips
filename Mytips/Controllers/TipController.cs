@@ -17,9 +17,10 @@ namespace Mytips.Controllers
             return View(data);
         }
 
-        public IActionResult CreateHeader()
+        public IActionResult CreateHeader(int parentTipID)
         {
             TipHeaderModel tipHeaderModel = new TipHeaderModel();
+            tipHeaderModel.PARENT_TIP_ID = parentTipID;
             tipHeaderModel.CREATE_DTTM = DateTime.Now;
             tipHeaderModel.UPDATE_DTTM = DateTime.Now;
             return View(tipHeaderModel);
