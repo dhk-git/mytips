@@ -2,8 +2,22 @@
     ViewData["Title"] = "Home Page";
 }
 
-    <div class="jumbotron">
-        <h1>Jumbotron heading</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<div class="jumbotron">
+    <h1>Mytips</h1>
+    <p>You're right and I'm right. Just different.</p>
+</div>
+
+<div class="row">
+    <div class="col-6 col-sm-6 col-md-3">
+        <div class="card">
+            <div class="card-header">
+                Tip more...
+            </div>
+            <div class="card-body">
+                <a asp-action="Index" asp-controller="Tip"><img src="~/image/583985.svg" /></a>
+            </div>
+        </div>
     </div>
+</div>
+
 <a asp-action="DbInit" onclick="return confirm('Do you want to initialize DB?')">DB파일 삭제/생성</a>

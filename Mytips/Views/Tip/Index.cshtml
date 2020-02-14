@@ -4,11 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Tip Group</h1>
 
-<p>
-    <a asp-action="CreateGroup" asp-route-parentTipGroupId="0">Create Root</a>
-</p>
+<div class="text-right">
+    <a class="btn btn-success" asp-action="CreateGroup" asp-route-parentTipGroupId="0">Create Root</a>
+</div>
+<br />
 <table class="table table-striped table-sm">
     <thead>
         <tr class="d-none d-sm-table-row">
