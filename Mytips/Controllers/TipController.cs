@@ -13,38 +13,46 @@ namespace Mytips.Controllers
         private TipModelArgs _tipModelArgs = new TipModelArgs();
         public IActionResult Index()
         {
-            var data = _tipRepo.SelectTipHeaderModels(_tipModelArgs);
+            var data = _tipRepo.SelectTipGroupModels(_tipModelArgs);
             return View(data);
         }
 
-        public IActionResult CreateHeader(int parentTipID)
+        public IActionResult CreateGroup(int parentTipGroupID)
         {
-            TipHeaderModel tipHeaderModel = new TipHeaderModel();
-            tipHeaderModel.PARENT_TIP_ID = parentTipID;
-            tipHeaderModel.CREATE_DTTM = DateTime.Now;
-            tipHeaderModel.UPDATE_DTTM = DateTime.Now;
-            return View(tipHeaderModel);
+            TipGroupModel tipGroupModel = new TipGroupModel();
+            tipGroupModel.PARENT_TIP_GROUP_ID = parentTipGroupID;
+            tipGroupModel.CREATE_DTTM = DateTime.Now;
+            tipGroupModel.UPDATE_DTTM = DateTime.Now;
+            return View(tipGroupModel);
         }
 
         [HttpPost]
-        public IActionResult CreateHeader(TipHeaderModel tipHeaderModel)
+        public IActionResult CreateGroup(TipGroupModel tipGroupModel)
         {
-            _tipRepo.InsertTipHeaderModel(tipHeaderModel);
+            _tipRepo.InsertTipGroupModel(tipGroupModel);
             return RedirectToAction("Index");
         }
 
-        public IActionResult EditHeader(int tipID)
+        public IActionResult EditGroup(int tipGroupID)
         {
-            _tipModelArgs.Select_Tip_Id = tipID;
-            var data = _tipRepo.SelectTipHeaderModel(_tipModelArgs);
+            _tipModelArgs.Select_Tip_Group_Id = tipGroupID;
+            var data = _tipRepo.SelectTipGroupModel(_tipModelArgs);
             return View(data);
         }
 
         [HttpPost]
-        public IActionResult EditHeader(TipHeaderModel tipHeaderModel)
+        public IActionResult EditGroup(TipGroupModel tipGroupModel)
         {
-            _tipRepo.UpdateTipHeaderModel(tipHeaderModel);
+            _tipRepo.UpdateTipGroupModel(tipGroupModel);
             return RedirectToAction("Index");
         }
+
+        public IActionResult SelectDetailList(int tipId)
+        {
+
+
+            return View();
+        }
+
     }
 }

@@ -8,28 +8,31 @@ using System.Threading.Tasks;
 
 namespace Mytips.Models.TipModel
 {
-    public class TipDetailModel
+    public class TipGroupModel
     {
         [DisableParam(Update = false)]
-        [Display(Name = "DetailID")]
-        public int TIP_DETAIL_ID { get; set; }
-        [Display(Name = "내용")]
-        public string TIP_CONTENT { get; set; }
-        [Display(Name = "내용파일")]
-        public byte[] TIP_CONTENT_FILE { get; set; }
-        [Display(Name = "비고")]
+        [Display(Name ="GroupID")]
+        public int TIP_GROUP_ID { get; set; }
+        [Display(Name = "ParentGroupID")]
+        public int PARENT_TIP_GROUP_ID { get; set; }
+        [Display(Name = "Level")]
+        [DisableParam]
+        public int LEVEL { get; set; }
+        [Display(Name = "TipGroupName")]
+        public string TIP_GROUP_NAME { get; set; }
+        [Display(Name = "Remark")]
         public string REMARK { get; set; }
-        [Display(Name = "순서")]
+        [Display(Name = "Sort")]
         public decimal SORT_NO { get; set; }
-        [Display(Name = "삭제FLAG")]
+        [Display(Name = "DelFlag")]
         public string DEL_FLAG { get; set; }
-        [Display(Name = "생성일시")]
+        [Display(Name = "CreateDateTime")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         [DisableParam]
         public DateTime CREATE_DTTM { get; set; }
-        [Display(Name = "수정일시")]
+        [Display(Name = "UpdateDateTime")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         [DisableParam]
-        public DateTime UPDATE_DTTM { get; set; }
+        public DateTime UPDATE_DTTM { get; set; } 
     }
 }

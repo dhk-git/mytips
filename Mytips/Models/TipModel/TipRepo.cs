@@ -8,67 +8,67 @@ namespace Mytips.Models.TipModel
 {
     public class TipRepo : RepoBase
     {
-        public List<TipHeaderModel> SelectTipHeaderModels(TipModelArgs args)
+        public List<TipGroupModel> SelectTipGroupModels(TipModelArgs args)
         {
             string qry;
             qry = @"
 WITH RECURSIVE
-	P( TIP_NAME, TIP_ID, LEVEL, REMARK, SORT_NO, CREATE_DTTM, UPDATE_DTTM) AS (
-		SELECT TIP_NAME, TIP_ID, 0, REMARK, SORT_NO, CREATE_DTTM, UPDATE_DTTM
-		FROM TIP_HEADER WHERE PARENT_TIP_ID = 0
+	P( TIP_GROUP_NAME, TIP_GROUP_ID, LEVEL, REMARK, SORT_NO, CREATE_DTTM, UPDATE_DTTM) AS (
+		SELECT TIP_GROUP_NAME, TIP_GROUP_ID, 0, REMARK, SORT_NO, CREATE_DTTM, UPDATE_DTTM
+		FROM TIP_GROUP WHERE PARENT_TIP_GROUP_ID = 0
 	UNION ALL
-		SELECT C.TIP_NAME, C.TIP_ID, LEVEL + 1 AS LEVEL 
+		SELECT C.TIP_GROUP_NAME, C.TIP_GROUP_ID, LEVEL + 1 AS LEVEL 
 			, C.REMARK, C.SORT_NO, C.CREATE_DTTM, C.UPDATE_DTTM
-		FROM TIP_HEADER AS C
-		JOIN P ON C.PARENT_TIP_ID = P.TIP_ID
+		FROM TIP_GROUP AS C
+		JOIN P ON C.PARENT_TIP_GROUP_ID = P.TIP_GROUP_ID
 	ORDER BY LEVEL DESC, SORT_NO
 )
-SELECT substr('..........',TIP_NAME ,LEVEL * 3) || TIP_NAME AS TIP_NAME_LEVEL, * FROM P
+SELECT * FROM P
 ";
-            return QueryList<TipHeaderModel>(qry, args , false);
+            return QueryList<TipGroupModel>(qry, args , false);
         }
 
-        public TipHeaderModel SelectTipHeaderModel(TipModelArgs args)
+        public TipGroupModel SelectTipGroupModel(TipModelArgs args)
         {
             string qry;
             qry = @"
-SELECT * FROM TIP_HEADER
-WHERE TIP_ID = @TIP_ID
+SELECT * FROM TIP_GROUP
+WHERE TIP_GROUP_ID = @TIP_GROUP_ID
 ";
-            return QuerySingle<TipHeaderModel>(qry, new { TIP_ID = args.Select_Tip_Id }, false);
+            return QuerySingle<TipGroupModel>(qry, new { TIP_GROUP_ID = args.Select_Tip_Group_Id }, false);
         }
         
-        public void UpdateTipHeaderModel(TipHeaderModel tipHeaderModel)
+        public void UpdateTipGroupModel(TipGroupModel tipGroupModel)
         {
             string qry = @"
-UPDATE TIP_HEADER 
+UPDATE TIP_GROUP
     SET 
-    PARENT_TIP_ID = @PARENT_TIP_ID
-    , TIP_NAME    = @TIP_NAME
-    , REMARK      = @REMARK
-    , SORT_NO       = @SORT_NO
-    , DEL_FLAG      = @DEL_FLAG
-    , UPDATE_DTTM   = datetime('now','localtime')
-WHERE TIP_ID = @TIP_ID
+    PARENT_TIP_GROUP_ID = @PARENT_TIP_GROUP_ID
+    , TIP_GROUP_NAME          = @TIP_GROUP_NAME
+    , REMARK            = @REMARK
+    , SORT_NO           = @SORT_NO
+    , DEL_FLAG          = @DEL_FLAG
+    , UPDATE_DTTM       = datetime('now','localtime')
+WHERE TIP_GROUP_ID = @TIP_GROUP_ID
 ";
-            Execute(Crud.Update, qry, tipHeaderModel, false);
+            Execute(Crud.Update, qry, tipGroupModel, false);
         }
         
-        public void InsertTipHeaderModel(TipHeaderModel model)
+        public void InsertTipGroupModel(TipGroupModel model)
         {
             string qry = @"
 
-INSERT INTO TIP_HEADER (
-    PARENT_TIP_ID
-    , TIP_NAME
+INSERT INTO TIP_GROUP (
+    PARENT_TIP_GROUP_ID
+    , TIP_GROUP_NAME
     , REMARK
     , SORT_NO
     , DEL_FLAG
     , CREATE_DTTM
     , UPDATE_DTTM
 ) VALUES (
-    @PARENT_TIP_ID
-    , @TIP_NAME
+    @PARENT_TIP_GROUP_ID
+    , @TIP_GROUP_NAME
     , @REMARK
     , @SORT_NO
     , @DEL_FLAG
@@ -77,6 +77,22 @@ INSERT INTO TIP_HEADER (
 )
 ";
             Execute(Crud.Insert, qry, model, false);
+        }
+
+        //TipDetail
+
+        public List<TipModel> SelectTipModels(TipModelArgs args)
+        {
+            string qry = @"
+SELECT 
+    TIP_DETAIL_ID
+    , TIP_ID
+    , PARENT_TIP_ID
+    , TIP
+";
+                        
+
+            return QueryList<TipModel>(qry, new { }, false);
         }
     }
 }

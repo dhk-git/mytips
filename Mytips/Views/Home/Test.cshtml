@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Mytips.Models.TipModel.TipHeaderModel>
+﻿@model IEnumerable<Mytips.Models.TipModel.TipGroupModel>
 
 @{
     ViewData["Title"] = "Test";
@@ -13,13 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TIP_ID)
+                @Html.DisplayNameFor(model => model.TIP_GROUP_ID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PARENT_TIP_ID)
+                @Html.DisplayNameFor(model => model.PARENT_TIP_GROUP_ID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TIP_NAME)
+                @Html.DisplayNameFor(model => model.TIP_GROUP_NAME)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.REMARK)
@@ -43,13 +43,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TIP_ID)
+                @Html.DisplayFor(modelItem => item.TIP_GROUP_ID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PARENT_TIP_ID)
+                @Html.DisplayFor(modelItem => item.PARENT_TIP_GROUP_ID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TIP_NAME)
+                @Html.DisplayFor(modelItem => item.TIP_GROUP_NAME)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.REMARK)

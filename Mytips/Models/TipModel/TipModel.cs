@@ -8,34 +8,32 @@ using System.Threading.Tasks;
 
 namespace Mytips.Models.TipModel
 {
-    public class TipHeaderModel
+    public class TipModel
     {
         [DisableParam(Update = false)]
-        [Display(Name ="ID")]
+        [Display(Name = "TipID")]
         public int TIP_ID { get; set; }
-        [Display(Name = "상위ID")]
-        public int PARENT_TIP_ID { get; set; }
-        [Display(Name = "Level")]
-        [DisableParam]
-        public int LEVEL { get; set; }
-        [Display(Name = "TipLevel")]
-        [DisableParam]
-        public string TIP_NAME_LEVEL { get; set; }
-        [Display(Name = "Tip")]
-        public string TIP_NAME { get; set; }
-        [Display(Name = "비고")]
+        [Display(Name = "TipGroupID")]
+        public int TIP_GROUP_ID { get; set; }
+        [Display(Name = "Title")]
+        public string TIP_TITLE { get; set; }
+        [Display(Name = "Content")]
+        public string TIP_CONTENT { get; set; }
+        [Display(Name = "ContentFile")]
+        public byte[] TIP_CONTENT_FILE { get; set; }
+        [Display(Name = "Remark")]
         public string REMARK { get; set; }
-        [Display(Name = "순서")]
+        [Display(Name = "Sort")]
         public decimal SORT_NO { get; set; }
-        [Display(Name = "삭제Flag")]
+        [Display(Name = "DelFLAG")]
         public string DEL_FLAG { get; set; }
-        [Display(Name = "생성일시")]
+        [Display(Name = "CreateDateTime")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         [DisableParam]
         public DateTime CREATE_DTTM { get; set; }
-        [Display(Name = "수정일시")]
+        [Display(Name = "UpdateDateTime")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm}")]
         [DisableParam]
-        public DateTime UPDATE_DTTM { get; set; } 
+        public DateTime UPDATE_DTTM { get; set; }
     }
 }
