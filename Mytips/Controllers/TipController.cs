@@ -47,11 +47,27 @@ namespace Mytips.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult SelectDetailList(int tipId)
+        public IActionResult SelectTipList(int tipGroupId)
         {
+            _tipModelArgs.Select_Tip_Group_Id = tipGroupId;
+            ViewBag.tipGroupId = tipGroupId;
+            var data = _tipRepo.SelectTipModels(_tipModelArgs);
+            return View(data);
+        }
 
-
-            return View();
+        public IActionResult CreateTip(int tipGroupId)
+        {
+            TipModel tipModel = new TipModel();
+            tipModel.TIP_GROUP_ID = tipGroupId;
+            tipModel.CREATE_DTTM = DateTime.Now;
+            tipModel.UPDATE_DTTM = DateTime.Now;
+            return View(tipModel);
+        }
+        [HttpPost]
+        public IActionResult CreateTip(TipModel tipModel)
+        {
+            _tipRepo.InsertTipModel(tipModel);
+            return RedirectToAction("SelectTipList", new { tipGroupId = tipModel.TIP_GROUP_ID });
         }
 
     }

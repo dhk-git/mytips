@@ -20,6 +20,7 @@ namespace Mytips.Models.TipModel
         [Display(Name = "Content")]
         public string TIP_CONTENT { get; set; }
         [Display(Name = "ContentFile")]
+        [DisableParam(Update = false)]
         public byte[] TIP_CONTENT_FILE { get; set; }
         [Display(Name = "Remark")]
         public string REMARK { get; set; }

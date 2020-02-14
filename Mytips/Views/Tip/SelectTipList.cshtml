@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Mytips.Models.TipModel.TipModel>
+
+@{
+    ViewData["Title"] = "SelectTipList";
+}
+
+<h1>SelectTipList</h1>
+
+<p>
+    <a asp-action="CreateTip" asp-route-tipGroupId="@ViewBag.tipGroupId">Create Tip</a>
+</p>
+<table class="table table-striped table-sm">
+    <thead>
+        <tr>
+            <th class="d-none">
+                @Html.DisplayNameFor(model => model.TIP_ID)
+            </th>
+            <th  class="d-none">
+                @Html.DisplayNameFor(model => model.TIP_GROUP_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TIP_TITLE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TIP_CONTENT)
+            </th>
+            <th class="d-none">
+                @Html.DisplayNameFor(model => model.TIP_CONTENT_FILE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.REMARK)
+            </th>
+            <th class="d-none">
+                @Html.DisplayNameFor(model => model.SORT_NO)
+            </th>
+            <th class="d-none">
+                @Html.DisplayNameFor(model => model.DEL_FLAG)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CREATE_DTTM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UPDATE_DTTM)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="d-none">
+                @Html.DisplayFor(modelItem => item.TIP_ID)
+            </td>
+            <td class="d-none">
+                @Html.DisplayFor(modelItem => item.TIP_GROUP_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIP_TITLE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIP_CONTENT)
+            </td>
+            <td class="d-none">
+                @Html.DisplayFor(modelItem => item.TIP_CONTENT_FILE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.REMARK)
+            </td>
+            <td class="d-none">
+                @Html.DisplayFor(modelItem => item.SORT_NO)
+            </td>
+            <td class="d-none">
+                @Html.DisplayFor(modelItem => item.DEL_FLAG)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CREATE_DTTM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UPDATE_DTTM)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

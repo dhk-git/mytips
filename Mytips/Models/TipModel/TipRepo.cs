@@ -23,7 +23,10 @@ WITH RECURSIVE
 		JOIN P ON C.PARENT_TIP_GROUP_ID = P.TIP_GROUP_ID
 	ORDER BY LEVEL DESC, SORT_NO
 )
-SELECT * FROM P
+SELECT 
+ CASE WHEN LEVEL <> 0 THEN '└ ' || TIP_GROUP_NAME ELSE TIP_GROUP_NAME END AS TIP_GROUP_NAME
+, TIP_GROUP_ID, LEVEL, REMARK, SORT_NO, CREATE_DTTM, UPDATE_DTTM
+FROM P
 ";
             return QueryList<TipGroupModel>(qry, args , false);
         }
@@ -79,20 +82,52 @@ INSERT INTO TIP_GROUP (
             Execute(Crud.Insert, qry, model, false);
         }
 
+
+
         //TipDetail
 
         public List<TipModel> SelectTipModels(TipModelArgs args)
         {
             string qry = @"
 SELECT 
-    TIP_DETAIL_ID
-    , TIP_ID
-    , PARENT_TIP_ID
-    , TIP
+    TIP_ID
+    , TIP_GROUP_ID
+    , TIP_TITLE
+    , TIP_CONTENT
+    , REMARK
+    , SORT_NO
+    , DEL_FLAG
+    , CREATE_DTTM
+    , UPDATE_DTTM
+FROM TIP
+WHERE TIP_GROUP_ID = @TIP_GROUP_ID
 ";
-                        
-
-            return QueryList<TipModel>(qry, new { }, false);
+            return QueryList<TipModel>(qry, new { TIP_GROUP_ID = args.Select_Tip_Group_Id }, false);
         }
+        public void InsertTipModel(TipModel tipModel)
+        {
+            string qry = @"
+INSERT INTO TIP (
+    TIP_GROUP_ID
+    , TIP_TITLE
+    , TIP_CONTENT
+    , REMARK
+    , SORT_NO
+    , DEL_FLAG
+    , CREATE_DTTM
+    , UPDATE_DTTM
+) VALUES (
+    @TIP_GROUP_ID
+    , @TIP_TITLE
+    , @TIP_CONTENT
+    , @REMARK
+    , @SORT_NO
+    , @DEL_FLAG
+    , datetime('now','localtime')
+    , datetime('now','localtime')
+)";
+            Execute(Crud.Insert, qry, tipModel, false);
+        }
+
     }
 }

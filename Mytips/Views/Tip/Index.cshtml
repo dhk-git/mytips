@@ -11,7 +11,7 @@
 </p>
 <table class="table table-striped table-sm">
     <thead>
-        <tr>
+        <tr class="d-none d-sm-table-row">
             <th>
                 @Html.DisplayNameFor(model => model.TIP_GROUP_ID)
             </th>
@@ -38,33 +38,28 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
-            <td>
+        <tr style="cursor:pointer" onclick="location.href='@Url.Content("~/Tip/SelectTipList?tipGroupId=")@item.TIP_GROUP_ID'">
+            <td class="d-none d-sm-table-cell">
                 @Html.DisplayFor(modelItem => item.TIP_GROUP_ID)
             </td>
             @*<td>
             @Html.DisplayFor(modelItem => item.PARENT_TIP_ID)
         </td>*@
-            <td  style="padding-left:@(item.LEVEL * 30)px">
-                @Html.DisplayFor(modelItem => item.TIP_GROUP_NAME)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.REMARK)
-            </td>
-            <td>
+            <td style="padding-left:@(item.LEVEL * 10)px">@Html.DisplayFor(modelItem => item.TIP_GROUP_NAME)</td>
+            <td class="d-none d-sm-table-cell">@Html.DisplayFor(modelItem => item.REMARK)</td>
+            <td  class="d-none d-sm-table-cell">
                 @Html.DisplayFor(modelItem => item.SORT_NO)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CREATE_DTTM)
+            <td class="d-none d-sm-table-cell">
+                <span>@Html.DisplayFor(modelItem => item.CREATE_DTTM)</span>
             </td>
-            <td>
+            <td class="d-none d-sm-table-cell">
                 @Html.DisplayFor(modelItem => item.UPDATE_DTTM)
             </td>
             <td>
                 @Html.ActionLink("Edit", "EditGroup", new { tipGroupId = item.TIP_GROUP_ID }) |
-                @*@Html.ActionLink("Detail", "DetailsHeader", new { tipId = item.TIP_ID }) |*@
                 @Html.ActionLink("Delete", "DeleteGroup", new { tipGroupId = item.TIP_GROUP_ID }) |
-                @Html.ActionLink("Create Child", "CreateGroup", new { parentTipGroupID = item.TIP_GROUP_ID })
+                @Html.ActionLink("CreateChild", "CreateGroup", new { parentTipGroupID = item.TIP_GROUP_ID })
             </td>
         </tr>
 }
