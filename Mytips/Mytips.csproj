@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Models\DbFiles\CreateTable.sql">
+    <Content Include="Models\QueryFiles\CreateTable.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\DbFiles\" />
+    <Folder Include="Models\QueryFiles\" />
   </ItemGroup>
 
 
