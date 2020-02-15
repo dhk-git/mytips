@@ -18,6 +18,7 @@ namespace Mytips.Models.Base
         private static string _path;
         private static string _dbFilePath;
         private static string _connectionString;
+        
         static RepoBase()
         {
             //string ff = System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase;
@@ -26,14 +27,14 @@ namespace Mytips.Models.Base
             var os = System.Environment.OSVersion.VersionString;
             if (os.Contains("Windows"))
             {
-                _path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Replace("file:\\", "") + "\\Models\\DbFiles";
-                _dbFilePath = _path + "\\MyTip.db";
+                _path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Replace("file:\\", "") + "\\Models\\DbFiles\\";
+                _dbFilePath = _path + "MyTip.db";
                 _connectionString = "Data Source=" + _dbFilePath;
             }
             else
             {
-                _path = "/home/mytipsdata";
-                _dbFilePath = _path + "/MyTip.db";
+                _path = "/home/mytipsdata/";
+                _dbFilePath = _path + "MyTip.db";
                 _connectionString = "Data Source=" + _dbFilePath;
             }
 
@@ -41,7 +42,7 @@ namespace Mytips.Models.Base
         public static string GetQueryFromFile(string fileName)
         {
             
-            return System.IO.File.ReadAllText(_path + "\\" + fileName);
+            return System.IO.File.ReadAllText(_path + fileName);
         }
 
         /// <summary>
