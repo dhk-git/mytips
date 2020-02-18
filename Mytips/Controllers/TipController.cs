@@ -70,5 +70,18 @@ namespace Mytips.Controllers
             return RedirectToAction("SelectTipList", new { tipGroupId = tipModel.TIP_GROUP_ID });
         }
 
+        public IActionResult EditTip(int tipId)
+        {
+            _tipModelArgs.Select_Tip_Id = tipId;
+            var data = _tipRepo.SelectTipModel(_tipModelArgs);
+            return View(data);
+        }
+        [HttpPost]
+        public IActionResult EditTip(TipModel tipModel)
+        {
+            _tipRepo.UpdateTipModel(tipModel);
+            return RedirectToAction("SelectTipList", new { tipGroupId = tipModel.TIP_GROUP_ID });
+        }
+
     }
 }

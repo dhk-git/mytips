@@ -58,9 +58,14 @@
                 @Html.DisplayFor(modelItem => item.UPDATE_DTTM)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditGroup", new { tipGroupId = item.TIP_GROUP_ID }) |
+                @*@Html.ActionLink("Edit", "EditGroup", new { tipGroupId = item.TIP_GROUP_ID }) |
                 @Html.ActionLink("Delete", "DeleteGroup", new { tipGroupId = item.TIP_GROUP_ID }) |
-                @Html.ActionLink("CreateChild", "CreateGroup", new { parentTipGroupID = item.TIP_GROUP_ID })
+                @Html.ActionLink("CreateChild", "CreateGroup", new { parentTipGroupID = item.TIP_GROUP_ID })*@
+
+                <a class="btn btn-success btn-sm" asp-action="EditGroup" asp-route-tipGroupId="@item.TIP_GROUP_ID">Edit</a>
+                <a class="btn btn-info btn-sm" asp-action="DeleteGroup" asp-route-tipGroupId="@item.TIP_GROUP_ID" onclick="return confirm('Delete?')">Del</a>
+                <a class="btn btn-primary btn-sm" asp-action="CreateGroup" asp-route-parentTipGroupId="@item.TIP_GROUP_ID">Child</a>
+
             </td>
         </tr>
 }

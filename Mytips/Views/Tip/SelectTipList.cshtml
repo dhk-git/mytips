@@ -58,9 +58,8 @@
                 @Html.DisplayFor(modelItem => item.UPDATE_DTTM)
             </td>
             <td class="d-none d-sm-table-cell">
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <a class="btn btn-success" asp-action="EditTip" asp-route-tipId="@item.TIP_ID">Edit</a>
+                <a class="btn btn-info" asp-action="DeleteTip" asp-route-tipId="@item.TIP_ID" onclick="return confirm('Delete?')">Del</a>
             </td>
         </tr>
         <tr>
@@ -68,9 +67,8 @@
                 <div style="white-space: pre-line">@Html.DisplayFor(modelItem => item.TIP_CONTENT)</div>
                 <div class="d-block d-sm-none">UpdateDttm : @Html.DisplayFor(modelItem => item.UPDATE_DTTM)</div>
                 <div class="d-block d-sm-none">
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    <a class="btn btn-success" asp-action="EditTip" asp-route-tipId="@item.TIP_ID">Edit</a>
+                    <a class="btn btn-info" asp-action="DeleteTip" asp-route-tipId="@item.TIP_ID"  onclick="return confirm('Delete?')">Del</a>
                 </div>
             </td>
         </tr>

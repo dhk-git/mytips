@@ -1,0 +1,78 @@
+﻿@model Mytips.Models.TipModel.TipModel
+
+@{
+    ViewData["Title"] = "EditTip";
+}
+<h1>Edit Tip</h1>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="EditTip">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label asp-for="TIP_ID" class="control-label"></label>
+                    <input asp-for="TIP_ID" class="form-control" />
+                    <span asp-validation-for="TIP_ID" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="TIP_GROUP_ID" class="control-label"></label>
+                    <input asp-for="TIP_GROUP_ID" class="form-control" />
+                    <span asp-validation-for="TIP_GROUP_ID" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="TIP_TITLE" class="control-label"></label>
+                <input asp-for="TIP_TITLE" class="form-control" />
+                <span asp-validation-for="TIP_TITLE" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TIP_CONTENT" class="control-label"></label>
+                <textarea asp-for="TIP_CONTENT" class="form-control" rows="20" cols="100" ></textarea>
+                <span asp-validation-for="TIP_CONTENT" class="text-danger"></span>
+            </div>
+            <div class="form-group d-none">
+                <label asp-for="TIP_CONTENT_FILE" class="control-label"></label>
+                <input asp-for="TIP_CONTENT_FILE" class="form-control" />
+                <span asp-validation-for="TIP_CONTENT_FILE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="REMARK" class="control-label"></label>
+                <input asp-for="REMARK" class="form-control" />
+                <span asp-validation-for="REMARK" class="text-danger"></span>
+            </div>
+            <div class="form-group d-none">
+                <label asp-for="SORT_NO" class="control-label"></label>
+                <input asp-for="SORT_NO" class="form-control" />
+                <span asp-validation-for="SORT_NO" class="text-danger"></span>
+            </div>
+            <div class="form-group d-none">
+                <label asp-for="DEL_FLAG" class="control-label"></label>
+                <input asp-for="DEL_FLAG" class="form-control" />
+                <span asp-validation-for="DEL_FLAG" class="text-danger"></span>
+            </div>
+            <div class="form-group d-none">
+                <label asp-for="CREATE_DTTM" class="control-label"></label>
+                <input asp-for="CREATE_DTTM" class="form-control" />
+                <span asp-validation-for="CREATE_DTTM" class="text-danger"></span>
+            </div>
+            <div class="form-group d-none">
+                <label asp-for="UPDATE_DTTM" class="control-label"></label>
+                <input asp-for="UPDATE_DTTM" class="form-control" />
+                <span asp-validation-for="UPDATE_DTTM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="SelectTipList" asp-route-tipGroupId="@Model.TIP_GROUP_ID">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -104,6 +104,43 @@ WHERE TIP_GROUP_ID = @TIP_GROUP_ID
 ";
             return QueryList<TipModel>(qry, new { TIP_GROUP_ID = args.Select_Tip_Group_Id }, false);
         }
+
+        public void UpdateTipModel(TipModel tipModel)
+        {
+            string qry = @"
+UPDATE TIP 
+    SET
+    TIP_GROUP_ID    = @TIP_GROUP_ID 
+    , TIP_TITLE     = @TIP_TITLE  
+    , TIP_CONTENT   = @TIP_CONTENT
+    , REMARK        = @REMARK     
+    , SORT_NO       = @SORT_NO    
+    , DEL_FLAG      = @DEL_FLAG   
+    , UPDATE_DTTM   = datetime('now','localtime')
+WHERE TIP_ID = @TIP_ID
+";
+            Execute(Crud.Update, qry, tipModel, false);
+        }
+
+        public TipModel SelectTipModel(TipModelArgs args)
+        {
+            string qry = @"
+SELECT 
+    TIP_ID
+    , TIP_GROUP_ID
+    , TIP_TITLE
+    , TIP_CONTENT
+    , REMARK
+    , SORT_NO
+    , DEL_FLAG
+    , CREATE_DTTM
+    , UPDATE_DTTM
+FROM TIP
+WHERE TIP_ID = @TIP_ID
+";
+            return QuerySingle<TipModel>(qry, new {TIP_ID = args.Select_Tip_Id }, false);
+        }
+
         public void InsertTipModel(TipModel tipModel)
         {
             string qry = @"

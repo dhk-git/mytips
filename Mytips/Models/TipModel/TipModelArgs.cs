@@ -8,5 +8,6 @@ namespace Mytips.Models.TipModel
     public class TipModelArgs
     {
         public int Select_Tip_Group_Id { get; set; }
+        public int Select_Tip_Id { get; internal set; }
     }
 }
