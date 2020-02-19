@@ -29,7 +29,7 @@
 
             <div class="form-group">
                 <label asp-for="TIP_CONTENT" class="control-label"></label>
-                <textarea asp-for="TIP_CONTENT" class="form-control" rows="20" cols="100" ></textarea>
+                <textarea id="summernote" asp-for="TIP_CONTENT" class="form-control" rows="20" cols="100"></textarea>
                 <span asp-validation-for="TIP_CONTENT" class="text-danger"></span>
             </div>
             <div class="form-group d-none">
@@ -73,6 +73,23 @@
     <a asp-action="SelectTipList" asp-route-tipGroupId="@Model.TIP_GROUP_ID">Back to List</a>
 </div>
 
+
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @*@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}*@
+
+    <script>
+        //        $.validator.setDefaults({
+        //    ignore: ":hidden:not(.post-content)"
+        //});
+        $(document).ready(function () {
+            $('#summernote').summernote({
+                height: 200
+            });
+        });
+
+
+    </script>
+    <!-- include summernote css/js -->
+
 }
