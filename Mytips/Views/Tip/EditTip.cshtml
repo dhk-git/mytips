@@ -3,33 +3,33 @@
 @{
     ViewData["Title"] = "EditTip";
 }
-<h1>Edit Tip</h1>
+<h3>Edit Tip</h3>
 <hr />
 <div class="row">
     <div class="col-md-12">
         <form asp-action="EditTip">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">
-                <div class="form-group col-6">
+                <div class="form-group col-8">
+                    <label asp-for="TIP_TITLE" class="control-label"></label>
+                    <input asp-for="TIP_TITLE" class="form-control" />
+                    <span asp-validation-for="TIP_TITLE" class="text-danger"></span>
+                </div>
+                <div class="form-group col-2">
                     <label asp-for="TIP_ID" class="control-label"></label>
                     <input asp-for="TIP_ID" class="form-control" />
                     <span asp-validation-for="TIP_ID" class="text-danger"></span>
                 </div>
-                <div class="form-group col-6">
+                <div class="form-group col-2">
                     <label asp-for="TIP_GROUP_ID" class="control-label"></label>
                     <input asp-for="TIP_GROUP_ID" class="form-control" />
                     <span asp-validation-for="TIP_GROUP_ID" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="TIP_TITLE" class="control-label"></label>
-                <input asp-for="TIP_TITLE" class="form-control" />
-                <span asp-validation-for="TIP_TITLE" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
                 <label asp-for="TIP_CONTENT" class="control-label"></label>
-                <textarea style="white-space: pre-line" id="summernote" asp-for="TIP_CONTENT" class="form-control" rows="10"></textarea>
+                @*<textarea style="white-space: pre-line" id="summernote" asp-for="TIP_CONTENT" class="form-control" rows="10"></textarea>*@
+                <textarea style=""  class="form-control" asp-for="TIP_CONTENT"></textarea>
                 <span asp-validation-for="TIP_CONTENT" class="text-danger"></span>
             </div>
             <div class="form-group d-none">
@@ -83,11 +83,13 @@
         //    ignore: ":hidden:not(.post-content)"
         //});
         $(document).ready(function () {
-            $('#summernote').summernote({
-                height: 200
+            $('#TIP_CONTENT').summernote({
+                height: 300
             });
         });
-
+        $(document).ready(function () {
+            $('#TIP_CONTENT img').attr("style", "max-width:100%");
+        })
 
     </script>
     <!-- include summernote css/js -->
