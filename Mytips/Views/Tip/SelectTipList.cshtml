@@ -65,7 +65,7 @@
         <tr>
             <td colspan="5">
                 @*<div style="white-space: pre-line">@Html.DisplayFor(modelItem => item.TIP_CONTENT)</div>*@
-                <div>@Html.Raw(item.TIP_CONTENT)</div>
+                <div style="white-space: pre-line">@Html.Raw(item.TIP_CONTENT)</div>
                 <div class="d-block d-sm-none">UpdateDttm : @Html.DisplayFor(modelItem => item.UPDATE_DTTM)</div>
                 <div class="d-block d-sm-none">
                     <a class="btn btn-success" asp-action="EditTip" asp-route-tipId="@item.TIP_ID">Edit</a>
