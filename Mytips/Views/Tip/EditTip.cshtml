@@ -29,7 +29,8 @@
             <div class="form-group">
                 <label asp-for="TIP_CONTENT" class="control-label"></label>
                 @*<textarea style="white-space: pre-line" id="summernote" asp-for="TIP_CONTENT" class="form-control" rows="10"></textarea>*@
-                <textarea style=""  class="form-control" asp-for="TIP_CONTENT"></textarea>
+                @*<textarea style="" class="form-control" asp-for="TIP_CONTENT"></textarea>*@
+                <div id="TIP_CONTENT">@Html.Raw(Model.TIP_CONTENT)</div>
                 <span asp-validation-for="TIP_CONTENT" class="text-danger"></span>
             </div>
             <div class="form-group d-none">
@@ -82,14 +83,31 @@
         //        $.validator.setDefaults({
         //    ignore: ":hidden:not(.post-content)"
         //});
-        $(document).ready(function () {
-            $('#TIP_CONTENT').summernote({
-                height: 300
-            });
+        //$(document).ready(function () {
+        //    $('#TIP_CONTENT').summernote({
+        //        height: 300
+        //    });
+        //});
+        //$(document).ready(function () {
+        //    $('#TIP_CONTENT img').attr("style", "max-width:100%");
+        //})
+        var options = {
+            //debug: 'info',
+            modules: {
+                toolbar: '#toolbar'
+            },
+            placeholder: 'Compose an epic...',
+            //readOnly: true,
+            theme: 'snow'
+        };
+        //var quill = new Quill('#TIP_CONTENT', options);
+        var quill = new Quill('#TIP_CONTENT', {
+            modules: {
+                syntax: true,              // Include syntax module
+                toolbar: [['code-block']]  // Include button in toolba
+            },
+            theme: 'snow'
         });
-        $(document).ready(function () {
-            $('#TIP_CONTENT img').attr("style", "max-width:100%");
-        })
 
     </script>
     <!-- include summernote css/js -->
