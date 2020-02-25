@@ -7,7 +7,7 @@
 <hr />
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="EditTip">
+        <form asp-action="EditTip"  onsubmit="handleSubmit()">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">
                 <div class="form-group col-8">
@@ -30,7 +30,8 @@
                 <label asp-for="TIP_CONTENT" class="control-label"></label>
                 @*<textarea style="white-space: pre-line" id="summernote" asp-for="TIP_CONTENT" class="form-control" rows="10"></textarea>*@
                 @*<textarea style="" class="form-control" asp-for="TIP_CONTENT"></textarea>*@
-                <div id="TIP_CONTENT">@Html.Raw(Model.TIP_CONTENT)</div>
+                <input type="hidden" asp-for="TIP_CONTENT" />
+                <div id="quillContent">@Html.Raw(Model.TIP_CONTENT)</div>
                 <span asp-validation-for="TIP_CONTENT" class="text-danger"></span>
             </div>
             <div class="form-group d-none">
@@ -64,7 +65,7 @@
                 <span asp-validation-for="UPDATE_DTTM" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary"/>
             </div>
         </form>
     </div>
@@ -91,23 +92,52 @@
         //$(document).ready(function () {
         //    $('#TIP_CONTENT img').attr("style", "max-width:100%");
         //})
+
+
+
+
+        var toolbarOptions = [
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['blockquote', 'code-block'],
+
+            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+            [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+            [{ 'direction': 'rtl' }],                         // text direction
+
+            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+
+            ['clean']                                         // remove formatting button
+        ];
+
         var options = {
             //debug: 'info',
             modules: {
-                toolbar: '#toolbar'
+                toolbar: toolbarOptions,
+                syntax: true
             },
             placeholder: 'Compose an epic...',
             //readOnly: true,
             theme: 'snow'
         };
-        //var quill = new Quill('#TIP_CONTENT', options);
-        var quill = new Quill('#TIP_CONTENT', {
-            modules: {
-                syntax: true,              // Include syntax module
-                toolbar: [['code-block']]  // Include button in toolba
-            },
-            theme: 'snow'
-        });
+        var quill = new Quill('#quillContent', options);
+        //var quill = new Quill('#TIP_CONTENT', {
+        //    modules: {
+        //        syntax: true,              // Include syntax module
+        //        toolbar: [['code-block']]  // Include button in toolba
+        //    },
+        //    theme: 'snow'
+        //});
+        function handleSubmit() {
+            //console.info('handleSubmit called');
+            document.getElementById('TIP_CONTENT').value = quill.root.innerHTML;
+        };
 
     </script>
     <!-- include summernote css/js -->
