@@ -10,7 +10,7 @@
 <table class="table table-striped table-sm">
     <thead>
         <tr class="d-none d-sm-table-row">
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.TIP_TITLE)
             </th>
             <th>
@@ -29,17 +29,16 @@
                 @Html.DisplayNameFor(model => model.TIP_CONTENT)
             </th>
         </tr>
-    </thead>
+    </thead>*@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    <div style="font-weight:bold">@Html.DisplayFor(modelItem => item.TIP_TITLE)</div>
-
+            <tr >
+                <td style="vertical-align:middle">
+                    <div style="font-weight:bold" > Title : @Html.DisplayFor(modelItem => item.TIP_TITLE)</div>
                 </td>
-                <td class="d-none d-sm-table-cell">
-                    @Html.DisplayFor(modelItem => item.REMARK)
+                <td style="vertical-align:middle" class="d-none d-sm-table-cell">
+                    Remark : @Html.DisplayFor(modelItem => item.REMARK)
                 </td>
                 <td class="d-none">
                     @Html.DisplayFor(modelItem => item.SORT_NO)
@@ -47,15 +46,15 @@
                 <td class="d-none">
                     @Html.DisplayFor(modelItem => item.DEL_FLAG)
                 </td>
-                <td class="d-none d-sm-table-cell">
-                    @Html.DisplayFor(modelItem => item.CREATE_DTTM)
+                <td  style="vertical-align:middle" class="d-none d-sm-table-cell">
+                    Create : @Html.DisplayFor(modelItem => item.CREATE_DTTM)
+                </td>
+                <td style="vertical-align:middle" class="d-none d-sm-table-cell">
+                    Update : @Html.DisplayFor(modelItem => item.UPDATE_DTTM)
                 </td>
                 <td class="d-none d-sm-table-cell">
-                    @Html.DisplayFor(modelItem => item.UPDATE_DTTM)
-                </td>
-                <td class="d-none d-sm-table-cell">
-                    <a class="btn btn-success" asp-action="EditTip" asp-route-tipId="@item.TIP_ID">Edit</a>
-                    <a class="btn btn-info" asp-action="DeleteTip" asp-route-tipId="@item.TIP_ID" onclick="return confirm('Delete?')">Del</a>
+                    <a asp-action="EditTip" asp-route-tipId="@item.TIP_ID">Edit</a>
+                    <a asp-action="DeleteTip" asp-route-tipId="@item.TIP_ID" onclick="return confirm('Delete?')">Del</a>
                 </td>
             </tr>
             <tr>
