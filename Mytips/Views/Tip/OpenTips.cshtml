@@ -53,6 +53,7 @@
                     Update : @Html.DisplayFor(modelItem => item.UPDATE_DTTM)
                 </td>
                 <td class="d-none d-sm-table-cell">
+                    <a href="#" onclick="EditContent(@item.TIP_ID)">Edit</a>
                     <a asp-action="EditTip" asp-route-tipId="@item.TIP_ID">Edit</a>
                     <a asp-action="DeleteTip" asp-route-tipId="@item.TIP_ID" onclick="return confirm('Delete?')">Del</a>
                 </td>
@@ -60,7 +61,7 @@
             <tr>
                 <td colspan="5">
                     @*<div style="white-space: pre-line">@Html.DisplayFor(modelItem => item.TIP_CONTENT)</div>*@
-                    <div class="ql-snow"><div class="ql-editor" style="white-space: pre-line">@Html.Raw(item.TIP_CONTENT)</div></div>
+                    <div class="ql-snow"><div id="tipContent_@item.TIP_ID" class="ql-editor" style="white-space: pre-line">@Html.Raw(item.TIP_CONTENT)</div></div>
                     <div class="d-block d-sm-none">UpdateDttm : @Html.DisplayFor(modelItem => item.UPDATE_DTTM)</div>
                     <div class="d-block d-sm-none">
                         <a class="btn btn-success" asp-action="EditTip" asp-route-tipId="@item.TIP_ID">Edit</a>
@@ -72,14 +73,3 @@
     </tbody>
 </table>
 
-
-@section Scripts{
-
-
-    <script>
-
-
-    </script>
-
-
-}
